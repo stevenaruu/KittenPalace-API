@@ -4,7 +4,7 @@ const app: Application = express()
 const port: number = 6969
 
 app.use('/health', (req: Request, res: Response, next: NextFunction) => {
-  res.status(200).send({ status: '200' })
+  res.status(200).send({ status: '200', data: 'OK' })
 })
 
 app.listen(port, () => {
