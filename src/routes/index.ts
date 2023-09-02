@@ -1,10 +1,12 @@
 import { Application, Router } from 'express'
 import { HealthRouter } from './health.route'
 import { KittenRouter } from './kitten.route'
+import { AuthRouter } from './auth.route'
 
 const _routes: Array<[string, Router]> = [
     ['/health', HealthRouter],
-    ['/kitten', KittenRouter]
+    ['/kitten', KittenRouter],
+    ['/auth', AuthRouter]
 ]
 
 export const routes = (app: Application) => {
