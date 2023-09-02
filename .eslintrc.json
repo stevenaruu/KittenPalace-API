@@ -19,6 +19,7 @@
         "@typescript-eslint/no-confusing-void-expression": "off",
         "@typescript-eslint/strict-boolean-expressions": "off",
         "@typescript-eslint/indent": "off",
-        "array-callback-return": "off"
+        "array-callback-return": "off",
+        "@typescript-eslint/no-misused-promises": "off"
     }
 }

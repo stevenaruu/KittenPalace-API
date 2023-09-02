@@ -1,6 +1,17 @@
 import { Request, Response } from 'express'
 import { createKittenValidation } from '../validations/kitten.validation'
 import { logger } from '../utils/logger'
+import { getKittenFromDB } from '../services/kitten.service'
+
+interface KittenInterface {
+    product_id: string
+    name: string
+    coin: number
+    ancestry: string
+    origin: string
+    color: string
+    description: string
+}
 
 export const createKitten = (req: Request, res: Response) => {
     const { error, value } = createKittenValidation(req.body)
@@ -13,24 +24,15 @@ export const createKitten = (req: Request, res: Response) => {
     return res.status(200).send({ status: true, statusCode: 200, message: 'Add kitten success', data: value })
 }
 
-export const getKitten = (req: Request, res: Response) => {
-    const kittens = [
-        {
-            name: 'Zeta',
-            coin: 999
-        },
-        {
-            name: 'Kuroo',
-            coin: 20
-        }
-    ]
+export const getKitten = async (req: Request, res: Response) => {
+    const kittens: any = await getKittenFromDB()
 
     const {
         params: { name }
     } = req
 
     if (name) {
-        const filteredKitten = kittens.filter((kitten) => {
+        const filteredKitten = kittens.filter((kitten: KittenInterface) => {
             if (kitten.name === name) {
                 return kitten
             }
