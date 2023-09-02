@@ -1,7 +1,13 @@
 import { Request, Response } from 'express'
 import { createKittenValidation, updateKittenValidation } from '../validations/kitten.validation'
 import { logger } from '../utils/logger'
-import { addKittenToDB, getKittenById, getKittenFromDB, updateKittenById } from '../services/kitten.service'
+import {
+    addKittenToDB,
+    deleteKittenById,
+    getKittenById,
+    getKittenFromDB,
+    updateKittenById
+} from '../services/kitten.service'
 import { v4 as uuidv4 } from 'uuid'
 
 export const createKitten = async (req: Request, res: Response) => {
@@ -66,6 +72,26 @@ export const updateKitten = async (req: Request, res: Response) => {
         }
     } catch (err) {
         logger.error(`ERR: kitten - update = ${err}`)
+        return res.status(422).send({ status: false, statusCode: 422, message: err })
+    }
+}
+
+export const deleteKitten = async (req: Request, res: Response) => {
+    const {
+        params: { id }
+    } = req
+
+    try {
+        const result = await deleteKittenById(id)
+        if (result) {
+            logger.info('Success delete kitten data')
+            return res.status(200).send({ status: true, statusCode: 200, message: 'Delete kitten success' })
+        } else {
+            logger.info('Kitten data not found')
+            return res.status(404).send({ status: true, statusCode: 404, message: 'Kitten not found' })
+        }
+    } catch (err) {
+        logger.error(`ERR: kitten - delete = ${err}`)
         return res.status(422).send({ status: false, statusCode: 422, message: err })
     }
 }

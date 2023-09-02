@@ -25,3 +25,7 @@ export const getKittenById = async (id: string) => {
 export const updateKittenById = async (id: string, payload: IKittenInterface) => {
     return await kittenModel.findOneAndUpdate({ kitten_id: id }, { $set: payload })
 }
+
+export const deleteKittenById = async (id: string) => {
+    return await kittenModel.findOneAndDelete({ kitten_id: id })
+}
