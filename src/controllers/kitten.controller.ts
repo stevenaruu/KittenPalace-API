@@ -56,9 +56,14 @@ export const updateKitten = async (req: Request, res: Response) => {
     }
 
     try {
-        await updateKittenById(id, value)
-        logger.info('Success update kitten data')
-        return res.status(200).send({ status: true, statusCode: 200, message: 'Update kitten success', data: value })
+        const result = await updateKittenById(id, value)
+        if (result) {
+            logger.info('Success update kitten data')
+            return res.status(200).send({ status: true, statusCode: 200, message: 'Update kitten success' })
+        } else {
+            logger.info('Kitten data not found')
+            return res.status(404).send({ status: true, statusCode: 404, message: 'Kitten not found' })
+        }
     } catch (err) {
         logger.error(`ERR: kitten - update = ${err}`)
         return res.status(422).send({ status: false, statusCode: 422, message: err })
