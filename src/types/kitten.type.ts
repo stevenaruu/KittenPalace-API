@@ -1,4 +1,4 @@
-export default interface KittenInterface {
+export default interface IKittenInterface {
     kitten_id: string
     name: string
     coin: number
