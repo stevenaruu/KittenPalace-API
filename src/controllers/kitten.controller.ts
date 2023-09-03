@@ -23,9 +23,9 @@ export const createKitten = async (req: Request, res: Response) => {
 
         logger.info('Success add new kitten')
         return res.status(201).send({ status: true, statusCode: 201, message: 'Add kitten success', data: value })
-    } catch (err) {
+    } catch (err: any) {
         logger.error(`ERR: kitten - create = ${err}`)
-        return res.status(422).send({ status: false, statusCode: 422, message: err })
+        return res.status(422).send({ status: false, statusCode: 422, message: err.message })
     }
 }
 
@@ -70,9 +70,9 @@ export const updateKitten = async (req: Request, res: Response) => {
             logger.info('Kitten data not found')
             return res.status(404).send({ status: true, statusCode: 404, message: 'Kitten not found' })
         }
-    } catch (err) {
+    } catch (err: any) {
         logger.error(`ERR: kitten - update = ${err}`)
-        return res.status(422).send({ status: false, statusCode: 422, message: err })
+        return res.status(422).send({ status: false, statusCode: 422, message: err.message })
     }
 }
 
@@ -90,8 +90,8 @@ export const deleteKitten = async (req: Request, res: Response) => {
             logger.info('Kitten data not found')
             return res.status(404).send({ status: true, statusCode: 404, message: 'Kitten not found' })
         }
-    } catch (err) {
+    } catch (err: any) {
         logger.error(`ERR: kitten - delete = ${err}`)
-        return res.status(422).send({ status: false, statusCode: 422, message: err })
+        return res.status(422).send({ status: false, statusCode: 422, message: err.message })
     }
 }

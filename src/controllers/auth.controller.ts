@@ -20,9 +20,9 @@ export const registerUser = async (req: Request, res: Response) => {
 
         logger.info('Success add register user')
         return res.status(201).send({ status: true, statusCode: 201, message: 'Success register user', data: value })
-    } catch (err) {
+    } catch (err: any) {
         logger.error(`ERR: auth - register = ${err}`)
-        return res.status(422).send({ status: false, statusCode: 422, message: err })
+        return res.status(422).send({ status: false, statusCode: 422, message: err.message })
     }
 }
 
