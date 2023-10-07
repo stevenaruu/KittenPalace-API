@@ -4,11 +4,14 @@ import IKittenInterface from '../types/kitten.type'
 export const createKittenValidation = (payload: IKittenInterface) => {
     const schema = Joi.object({
         kitten_id: Joi.string().required(),
+        id: Joi.number().required(),
         name: Joi.string().required(),
         coin: Joi.number().required(),
         ancestry: Joi.string().required(),
         origin: Joi.string().required(),
         color: Joi.string().required(),
+        star: Joi.number().required(),
+        image: Joi.string().required(),
         description: Joi.string().allow('', null)
     })
 
@@ -22,6 +25,8 @@ export const updateKittenValidation = (payload: IKittenInterface) => {
         ancestry: Joi.string().allow('', null),
         origin: Joi.string().allow('', null),
         color: Joi.string().allow('', null),
+        star: Joi.number().required(),
+        image: Joi.string().required(),
         description: Joi.string().allow('', null)
     })
 

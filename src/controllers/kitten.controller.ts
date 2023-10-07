@@ -11,7 +11,14 @@ import {
 import { v4 as uuidv4 } from 'uuid'
 
 export const createKitten = async (req: Request, res: Response) => {
+    const kittens: any = await getKittenFromDB()
     req.body.kitten_id = uuidv4()
+    if (kittens.length === 0) {
+        req.body.id = 1
+    } else {
+        req.body.id = kittens.length + 1
+    }
+    console.log(req.body)
     const { error, value } = createKittenValidation(req.body)
     if (error) {
         logger.error(`ERR: kitten - create = ${error.details[0].message}`)

@@ -6,6 +6,9 @@ const kittenSchema = new mongoose.Schema(
             type: String,
             unique: true
         },
+        id: {
+            type: Number
+        },
         name: {
             type: String
         },
@@ -19,6 +22,12 @@ const kittenSchema = new mongoose.Schema(
             type: String
         },
         color: {
+            type: String
+        },
+        star: {
+            type: Number
+        },
+        image: {
             type: String
         },
         description: {

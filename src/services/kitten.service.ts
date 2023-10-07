@@ -19,13 +19,13 @@ export const getKittenFromDB = async () => {
 }
 
 export const getKittenById = async (id: string) => {
-    return await kittenModel.findOne({ kitten_id: id })
+    return await kittenModel.findOne({ id: id })
 }
 
 export const updateKittenById = async (id: string, payload: IKittenInterface) => {
-    return await kittenModel.findOneAndUpdate({ kitten_id: id }, { $set: payload })
+    return await kittenModel.findOneAndUpdate({ id: id }, { $set: payload })
 }
 
 export const deleteKittenById = async (id: string) => {
-    return await kittenModel.findOneAndDelete({ kitten_id: id })
+    return await kittenModel.findOneAndDelete({ id: id })
 }
