@@ -61,7 +61,6 @@ export const updateKitten = async (req: Request, res: Response) => {
     const {
         params: { id }
     } = req
-
     const { error, value } = updateKittenValidation(req.body)
     if (error) {
         logger.error(`ERR: kitten - update = ${error.details[0].message}`)

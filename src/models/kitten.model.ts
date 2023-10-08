@@ -9,20 +9,14 @@ const kittenSchema = new mongoose.Schema(
         id: {
             type: Number
         },
+        title: {
+            type: String
+        },
         name: {
             type: String
         },
         coin: {
             type: Number
-        },
-        ancestry: {
-            type: String
-        },
-        origin: {
-            type: String
-        },
-        color: {
-            type: String
         },
         star: {
             type: Number
